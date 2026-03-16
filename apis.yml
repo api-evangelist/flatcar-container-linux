@@ -1,0 +1,50 @@
+aid: flatcar-container-linux
+name: Flatcar Container Linux
+description: >-
+  Flatcar Container Linux is a CNCF incubating minimal, immutable Linux
+  distribution designed for running containers. It provides automatic
+  atomic updates through the Nebraska update server, ensuring nodes stay
+  secure and consistent. Flatcar supports Kubernetes deployments on bare
+  metal, cloud, and virtual environments with a focus on security and
+  operational simplicity.
+url: https://www.flatcar.org
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+- Linux
+- Containers
+- Operating System
+- Immutable Infrastructure
+- Cloud Native
+- Incubating
+created: '2026-03-16'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+type: Index
+apis:
+- aid: flatcar-container-linux:nebraska-update-api
+  name: Flatcar Nebraska Update API
+  description: >-
+    Nebraska is the update management server for Flatcar Container Linux.
+    It provides an API for managing update channels, groups, and packages.
+    Flatcar instances poll Nebraska for available updates using the Omaha
+    protocol, enabling controlled rollouts, version pinning, and update
+    monitoring across fleets of Flatcar nodes.
+  humanURL: https://www.flatcar.org/docs/latest/Nebraska/
+  properties:
+  - type: Documentation
+    url: https://www.flatcar.org/docs/latest/Nebraska/
+  tags:
+  - Updates
+  - Fleet Management
+common:
+- type: Documentation
+  name: Flatcar Documentation
+  description: Official Flatcar Container Linux documentation.
+  url: https://www.flatcar.org/docs/latest/
+- type: GitHubOrg
+  name: Flatcar GitHub
+  description: Source code repositories.
+  url: https://github.com/flatcar/flatcar
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
