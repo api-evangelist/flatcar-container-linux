@@ -1,0 +1,2178 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Nebraska
+  description: Nebraska is an update manager.
+  tags:
+  - Flatcar
+  - Container
+  - Linux
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: flatcar-container-linux
+    baseUri: https://api.example.com
+    description: Nebraska HTTP API.
+    authentication:
+      type: bearer
+      token: '{{FLATCAR_CONTAINER_LINUX_TOKEN}}'
+    resources:
+    - name: login-cb
+      path: /login/cb
+      operations:
+      - name: logincb
+        method: GET
+        description: GitHub OAuth callback (GitHub mode only)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: login-validate-token
+      path: /login/validate_token
+      operations:
+      - name: validatetoken
+        method: GET
+        description: validate JWT access token (OIDC mode only)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: login-webhook
+      path: /login/webhook
+      operations:
+      - name: loginwebhook
+        method: POST
+        description: GitHub webhook (GitHub mode only)
+        inputParameters:
+        - name: X-Hub-Signature
+          in: header
+          type: string
+          required: true
+        - name: X-Github-Event
+          in: header
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: health
+      path: /health
+      operations:
+      - name: health
+        method: GET
+        description: health endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: config
+      path: /config
+      operations:
+      - name: getconfig
+        method: GET
+        description: get app config
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-update
+      path: /v1/update
+      operations:
+      - name: omaha
+        method: POST
+        description: omaha endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps
+      path: /api/apps
+      operations:
+      - name: paginateapps
+        method: GET
+        description: get Apps
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: perpage
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapp
+        method: POST
+        description: create app
+        inputParameters:
+        - name: clone_from
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid
+      path: /api/apps/{appIDorProductID}
+      operations:
+      - name: getapp
+        method: GET
+        description: get app
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateapp
+        method: PUT
+        description: update app
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteapp
+        method: DELETE
+        description: delete app
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-groups
+      path: /api/apps/{appIDorProductID}/groups
+      operations:
+      - name: paginategroups
+        method: GET
+        description: paginate groups of an app
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: perpage
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creategroup
+        method: POST
+        description: create group in app
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-groups-groupid
+      path: /api/apps/{appIDorProductID}/groups/{groupID}
+      operations:
+      - name: getgroup
+        method: GET
+        description: get group given its groupID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updategroup
+        method: PUT
+        description: update group given its groupID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletegroup
+        method: DELETE
+        description: delete group given its groupID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-groups-groupid-version
+      path: /api/apps/{appIDorProductID}/groups/{groupID}/version_timeline
+      operations:
+      - name: getgroupversiontimeline
+        method: GET
+        description: get version timeline of a group given its groupID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        - name: duration
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-groups-groupid-status-
+      path: /api/apps/{appIDorProductID}/groups/{groupID}/status_timeline
+      operations:
+      - name: getgroupstatustimeline
+        method: GET
+        description: get status timeline of a group given its groupID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        - name: duration
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-groups-groupid-instanc
+      path: /api/apps/{appIDorProductID}/groups/{groupID}/instances_stats
+      operations:
+      - name: getgroupinstancestats
+        method: GET
+        description: get instance stats of a group given its groupID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        - name: duration
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-groups-groupid-version
+      path: /api/apps/{appIDorProductID}/groups/{groupID}/version_breakdown
+      operations:
+      - name: getgroupversionbreakdown
+        method: GET
+        description: get version breakdown of a group given its groupID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-channels
+      path: /api/apps/{appIDorProductID}/channels
+      operations:
+      - name: paginatechannels
+        method: GET
+        description: paginate channels of an app
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: perpage
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createchannel
+        method: POST
+        description: create channel
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-channels-channelid
+      path: /api/apps/{appIDorProductID}/channels/{channelID}
+      operations:
+      - name: getchannel
+        method: GET
+        description: get channel by id
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: channelID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatechannel
+        method: PUT
+        description: update channel by id
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: channelID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletechannel
+        method: DELETE
+        description: delete channel by id
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: channelID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-channels-channelid-floors
+      path: /api/channels/{channelID}/floors
+      operations:
+      - name: paginatechannelfloors
+        method: GET
+        description: paginate floor packages of a channel
+        inputParameters:
+        - name: channelID
+          in: path
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: perpage
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-channels-channelid-floors-packageid
+      path: /api/channels/{channelID}/floors/{packageID}
+      operations:
+      - name: setchannelfloor
+        method: PUT
+        description: Create or update a floor package relationship (idempotent operation)
+        inputParameters:
+        - name: channelID
+          in: path
+          type: string
+          required: true
+        - name: packageID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: removechannelfloor
+        method: DELETE
+        description: remove package as floor for a channel
+        inputParameters:
+        - name: channelID
+          in: path
+          type: string
+          required: true
+        - name: packageID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-packages
+      path: /api/apps/{appIDorProductID}/packages
+      operations:
+      - name: paginatepackages
+        method: GET
+        description: paginate packages of an app
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: perpage
+          in: query
+          type: integer
+        - name: searchVersion
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpackage
+        method: POST
+        description: create package
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-packages-packageid
+      path: /api/apps/{appIDorProductID}/packages/{packageID}
+      operations:
+      - name: getpackage
+        method: GET
+        description: get package given its packageID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: packageID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatepackage
+        method: PUT
+        description: update package given its packageID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: packageID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletepackage
+        method: DELETE
+        description: delete package given its packageID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: packageID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-packages-packageid-flo
+      path: /api/apps/{appIDorProductID}/packages/{packageID}/floor-channels
+      operations:
+      - name: getpackagefloorchannels
+        method: GET
+        description: get all channels where a package is marked as a floor
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: packageID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-groups-groupid-instanc
+      path: /api/apps/{appIDorProductID}/groups/{groupID}/instances
+      operations:
+      - name: getgroupinstances
+        method: GET
+        description: get instances of a group given its groupID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        - name: status
+          in: query
+          type: integer
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: perpage
+          in: query
+          type: integer
+        - name: sortFilter
+          in: query
+          type: string
+        - name: sortOrder
+          in: query
+          type: string
+        - name: searchFilter
+          in: query
+          type: string
+        - name: searchValue
+          in: query
+          type: string
+        - name: duration
+          in: query
+          type: string
+          required: true
+        - name: version
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-groups-groupid-instanc
+      path: /api/apps/{appIDorProductID}/groups/{groupID}/instancescount
+      operations:
+      - name: getgroupinstancescount
+        method: GET
+        description: get instance count of a group given its groupID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        - name: duration
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-groups-groupid-instanc
+      path: /api/apps/{appIDorProductID}/groups/{groupID}/instances/{instanceID}
+      operations:
+      - name: getinstance
+        method: GET
+        description: get instance of a group given its groupID and appID
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        - name: instanceID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-apps-appidorproductid-groups-groupid-instanc
+      path: /api/apps/{appIDorProductID}/groups/{groupID}/instances/{instanceID}/status_history
+      operations:
+      - name: getinstancestatushistory
+        method: GET
+        description: get instance status_history.
+        inputParameters:
+        - name: appIDorProductID
+          in: path
+          type: string
+          required: true
+        - name: groupID
+          in: path
+          type: string
+          required: true
+        - name: instanceID
+          in: path
+          type: string
+          required: true
+        - name: limit
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-instances-instanceid
+      path: /api/instances/{instanceID}
+      operations:
+      - name: updateinstance
+        method: PUT
+        description: update instance
+        inputParameters:
+        - name: instanceID
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-activity
+      path: /api/activity
+      operations:
+      - name: paginateactivity
+        method: GET
+        description: paginate activity
+        inputParameters:
+        - name: appIDorProductID
+          in: query
+          type: string
+        - name: groupID
+          in: query
+          type: string
+        - name: channelID
+          in: query
+          type: string
+        - name: instanceID
+          in: query
+          type: string
+        - name: version
+          in: query
+          type: string
+        - name: severity
+          in: query
+          type: integer
+        - name: start
+          in: query
+          type: string
+          required: true
+        - name: end
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: perpage
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: flatcar-container-linux-rest
+    description: REST adapter for Nebraska.
+    resources:
+    - path: /login/cb
+      name: logincb
+      operations:
+      - method: GET
+        name: logincb
+        description: GitHub OAuth callback (GitHub mode only)
+        call: flatcar-container-linux.logincb
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /login/validate_token
+      name: validatetoken
+      operations:
+      - method: GET
+        name: validatetoken
+        description: validate JWT access token (OIDC mode only)
+        call: flatcar-container-linux.validatetoken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /login/webhook
+      name: loginwebhook
+      operations:
+      - method: POST
+        name: loginwebhook
+        description: GitHub webhook (GitHub mode only)
+        call: flatcar-container-linux.loginwebhook
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /health
+      name: health
+      operations:
+      - method: GET
+        name: health
+        description: health endpoint
+        call: flatcar-container-linux.health
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /config
+      name: getconfig
+      operations:
+      - method: GET
+        name: getconfig
+        description: get app config
+        call: flatcar-container-linux.getconfig
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/update
+      name: omaha
+      operations:
+      - method: POST
+        name: omaha
+        description: omaha endpoint
+        call: flatcar-container-linux.omaha
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps
+      name: paginateapps
+      operations:
+      - method: GET
+        name: paginateapps
+        description: get Apps
+        call: flatcar-container-linux.paginateapps
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps
+      name: createapp
+      operations:
+      - method: POST
+        name: createapp
+        description: create app
+        call: flatcar-container-linux.createapp
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}
+      name: getapp
+      operations:
+      - method: GET
+        name: getapp
+        description: get app
+        call: flatcar-container-linux.getapp
+        with:
+          appIDorProductID: rest.appIDorProductID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}
+      name: updateapp
+      operations:
+      - method: PUT
+        name: updateapp
+        description: update app
+        call: flatcar-container-linux.updateapp
+        with:
+          appIDorProductID: rest.appIDorProductID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}
+      name: deleteapp
+      operations:
+      - method: DELETE
+        name: deleteapp
+        description: delete app
+        call: flatcar-container-linux.deleteapp
+        with:
+          appIDorProductID: rest.appIDorProductID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups
+      name: paginategroups
+      operations:
+      - method: GET
+        name: paginategroups
+        description: paginate groups of an app
+        call: flatcar-container-linux.paginategroups
+        with:
+          appIDorProductID: rest.appIDorProductID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups
+      name: creategroup
+      operations:
+      - method: POST
+        name: creategroup
+        description: create group in app
+        call: flatcar-container-linux.creategroup
+        with:
+          appIDorProductID: rest.appIDorProductID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}
+      name: getgroup
+      operations:
+      - method: GET
+        name: getgroup
+        description: get group given its groupID and appID
+        call: flatcar-container-linux.getgroup
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}
+      name: updategroup
+      operations:
+      - method: PUT
+        name: updategroup
+        description: update group given its groupID and appID
+        call: flatcar-container-linux.updategroup
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}
+      name: deletegroup
+      operations:
+      - method: DELETE
+        name: deletegroup
+        description: delete group given its groupID and appID
+        call: flatcar-container-linux.deletegroup
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}/version_timeline
+      name: getgroupversiontimeline
+      operations:
+      - method: GET
+        name: getgroupversiontimeline
+        description: get version timeline of a group given its groupID and appID
+        call: flatcar-container-linux.getgroupversiontimeline
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}/status_timeline
+      name: getgroupstatustimeline
+      operations:
+      - method: GET
+        name: getgroupstatustimeline
+        description: get status timeline of a group given its groupID and appID
+        call: flatcar-container-linux.getgroupstatustimeline
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}/instances_stats
+      name: getgroupinstancestats
+      operations:
+      - method: GET
+        name: getgroupinstancestats
+        description: get instance stats of a group given its groupID and appID
+        call: flatcar-container-linux.getgroupinstancestats
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}/version_breakdown
+      name: getgroupversionbreakdown
+      operations:
+      - method: GET
+        name: getgroupversionbreakdown
+        description: get version breakdown of a group given its groupID and appID
+        call: flatcar-container-linux.getgroupversionbreakdown
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/channels
+      name: paginatechannels
+      operations:
+      - method: GET
+        name: paginatechannels
+        description: paginate channels of an app
+        call: flatcar-container-linux.paginatechannels
+        with:
+          appIDorProductID: rest.appIDorProductID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/channels
+      name: createchannel
+      operations:
+      - method: POST
+        name: createchannel
+        description: create channel
+        call: flatcar-container-linux.createchannel
+        with:
+          appIDorProductID: rest.appIDorProductID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/channels/{channelID}
+      name: getchannel
+      operations:
+      - method: GET
+        name: getchannel
+        description: get channel by id
+        call: flatcar-container-linux.getchannel
+        with:
+          appIDorProductID: rest.appIDorProductID
+          channelID: rest.channelID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/channels/{channelID}
+      name: updatechannel
+      operations:
+      - method: PUT
+        name: updatechannel
+        description: update channel by id
+        call: flatcar-container-linux.updatechannel
+        with:
+          appIDorProductID: rest.appIDorProductID
+          channelID: rest.channelID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/channels/{channelID}
+      name: deletechannel
+      operations:
+      - method: DELETE
+        name: deletechannel
+        description: delete channel by id
+        call: flatcar-container-linux.deletechannel
+        with:
+          appIDorProductID: rest.appIDorProductID
+          channelID: rest.channelID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/channels/{channelID}/floors
+      name: paginatechannelfloors
+      operations:
+      - method: GET
+        name: paginatechannelfloors
+        description: paginate floor packages of a channel
+        call: flatcar-container-linux.paginatechannelfloors
+        with:
+          channelID: rest.channelID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/channels/{channelID}/floors/{packageID}
+      name: setchannelfloor
+      operations:
+      - method: PUT
+        name: setchannelfloor
+        description: Create or update a floor package relationship (idempotent operation)
+        call: flatcar-container-linux.setchannelfloor
+        with:
+          channelID: rest.channelID
+          packageID: rest.packageID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/channels/{channelID}/floors/{packageID}
+      name: removechannelfloor
+      operations:
+      - method: DELETE
+        name: removechannelfloor
+        description: remove package as floor for a channel
+        call: flatcar-container-linux.removechannelfloor
+        with:
+          channelID: rest.channelID
+          packageID: rest.packageID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/packages
+      name: paginatepackages
+      operations:
+      - method: GET
+        name: paginatepackages
+        description: paginate packages of an app
+        call: flatcar-container-linux.paginatepackages
+        with:
+          appIDorProductID: rest.appIDorProductID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/packages
+      name: createpackage
+      operations:
+      - method: POST
+        name: createpackage
+        description: create package
+        call: flatcar-container-linux.createpackage
+        with:
+          appIDorProductID: rest.appIDorProductID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/packages/{packageID}
+      name: getpackage
+      operations:
+      - method: GET
+        name: getpackage
+        description: get package given its packageID and appID
+        call: flatcar-container-linux.getpackage
+        with:
+          appIDorProductID: rest.appIDorProductID
+          packageID: rest.packageID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/packages/{packageID}
+      name: updatepackage
+      operations:
+      - method: PUT
+        name: updatepackage
+        description: update package given its packageID and appID
+        call: flatcar-container-linux.updatepackage
+        with:
+          appIDorProductID: rest.appIDorProductID
+          packageID: rest.packageID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/packages/{packageID}
+      name: deletepackage
+      operations:
+      - method: DELETE
+        name: deletepackage
+        description: delete package given its packageID and appID
+        call: flatcar-container-linux.deletepackage
+        with:
+          appIDorProductID: rest.appIDorProductID
+          packageID: rest.packageID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/packages/{packageID}/floor-channels
+      name: getpackagefloorchannels
+      operations:
+      - method: GET
+        name: getpackagefloorchannels
+        description: get all channels where a package is marked as a floor
+        call: flatcar-container-linux.getpackagefloorchannels
+        with:
+          appIDorProductID: rest.appIDorProductID
+          packageID: rest.packageID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}/instances
+      name: getgroupinstances
+      operations:
+      - method: GET
+        name: getgroupinstances
+        description: get instances of a group given its groupID and appID
+        call: flatcar-container-linux.getgroupinstances
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}/instancescount
+      name: getgroupinstancescount
+      operations:
+      - method: GET
+        name: getgroupinstancescount
+        description: get instance count of a group given its groupID and appID
+        call: flatcar-container-linux.getgroupinstancescount
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}/instances/{instanceID}
+      name: getinstance
+      operations:
+      - method: GET
+        name: getinstance
+        description: get instance of a group given its groupID and appID
+        call: flatcar-container-linux.getinstance
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+          instanceID: rest.instanceID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/apps/{appIDorProductID}/groups/{groupID}/instances/{instanceID}/status_history
+      name: getinstancestatushistory
+      operations:
+      - method: GET
+        name: getinstancestatushistory
+        description: get instance status_history.
+        call: flatcar-container-linux.getinstancestatushistory
+        with:
+          appIDorProductID: rest.appIDorProductID
+          groupID: rest.groupID
+          instanceID: rest.instanceID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/instances/{instanceID}
+      name: updateinstance
+      operations:
+      - method: PUT
+        name: updateinstance
+        description: update instance
+        call: flatcar-container-linux.updateinstance
+        with:
+          instanceID: rest.instanceID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/activity
+      name: paginateactivity
+      operations:
+      - method: GET
+        name: paginateactivity
+        description: paginate activity
+        call: flatcar-container-linux.paginateactivity
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: flatcar-container-linux-mcp
+    transport: http
+    description: MCP adapter for Nebraska for AI agent use.
+    tools:
+    - name: logincb
+      description: GitHub OAuth callback (GitHub mode only)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.logincb
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: validatetoken
+      description: validate JWT access token (OIDC mode only)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.validatetoken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: loginwebhook
+      description: GitHub webhook (GitHub mode only)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flatcar-container-linux.loginwebhook
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: health
+      description: health endpoint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.health
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getconfig
+      description: get app config
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getconfig
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: omaha
+      description: omaha endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flatcar-container-linux.omaha
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paginateapps
+      description: get Apps
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.paginateapps
+      with:
+        page: tools.page
+        perpage: tools.perpage
+      inputParameters:
+      - name: page
+        type: integer
+        description: page
+      - name: perpage
+        type: integer
+        description: perpage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createapp
+      description: create app
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flatcar-container-linux.createapp
+      with:
+        clone_from: tools.clone_from
+      inputParameters:
+      - name: clone_from
+        type: string
+        description: clone_from
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapp
+      description: get app
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getapp
+      with:
+        appIDorProductID: tools.appIDorProductID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateapp
+      description: update app
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.updateapp
+      with:
+        appIDorProductID: tools.appIDorProductID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteapp
+      description: delete app
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: flatcar-container-linux.deleteapp
+      with:
+        appIDorProductID: tools.appIDorProductID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paginategroups
+      description: paginate groups of an app
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.paginategroups
+      with:
+        appIDorProductID: tools.appIDorProductID
+        page: tools.page
+        perpage: tools.perpage
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: page
+        type: integer
+        description: page
+      - name: perpage
+        type: integer
+        description: perpage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creategroup
+      description: create group in app
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flatcar-container-linux.creategroup
+      with:
+        appIDorProductID: tools.appIDorProductID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getgroup
+      description: get group given its groupID and appID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getgroup
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updategroup
+      description: update group given its groupID and appID
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.updategroup
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletegroup
+      description: delete group given its groupID and appID
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: flatcar-container-linux.deletegroup
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getgroupversiontimeline
+      description: get version timeline of a group given its groupID and appID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getgroupversiontimeline
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+        duration: tools.duration
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      - name: duration
+        type: string
+        description: duration
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getgroupstatustimeline
+      description: get status timeline of a group given its groupID and appID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getgroupstatustimeline
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+        duration: tools.duration
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      - name: duration
+        type: string
+        description: duration
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getgroupinstancestats
+      description: get instance stats of a group given its groupID and appID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getgroupinstancestats
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+        duration: tools.duration
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      - name: duration
+        type: string
+        description: duration
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getgroupversionbreakdown
+      description: get version breakdown of a group given its groupID and appID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getgroupversionbreakdown
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paginatechannels
+      description: paginate channels of an app
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.paginatechannels
+      with:
+        appIDorProductID: tools.appIDorProductID
+        page: tools.page
+        perpage: tools.perpage
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: page
+        type: integer
+        description: page
+      - name: perpage
+        type: integer
+        description: perpage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createchannel
+      description: create channel
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flatcar-container-linux.createchannel
+      with:
+        appIDorProductID: tools.appIDorProductID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getchannel
+      description: get channel by id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getchannel
+      with:
+        appIDorProductID: tools.appIDorProductID
+        channelID: tools.channelID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: channelID
+        type: string
+        description: channelID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatechannel
+      description: update channel by id
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.updatechannel
+      with:
+        appIDorProductID: tools.appIDorProductID
+        channelID: tools.channelID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: channelID
+        type: string
+        description: channelID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletechannel
+      description: delete channel by id
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: flatcar-container-linux.deletechannel
+      with:
+        appIDorProductID: tools.appIDorProductID
+        channelID: tools.channelID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: channelID
+        type: string
+        description: channelID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paginatechannelfloors
+      description: paginate floor packages of a channel
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.paginatechannelfloors
+      with:
+        channelID: tools.channelID
+        page: tools.page
+        perpage: tools.perpage
+      inputParameters:
+      - name: channelID
+        type: string
+        description: channelID
+        required: true
+      - name: page
+        type: integer
+        description: page
+      - name: perpage
+        type: integer
+        description: perpage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: setchannelfloor
+      description: Create or update a floor package relationship (idempotent operation)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.setchannelfloor
+      with:
+        channelID: tools.channelID
+        packageID: tools.packageID
+      inputParameters:
+      - name: channelID
+        type: string
+        description: channelID
+        required: true
+      - name: packageID
+        type: string
+        description: packageID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removechannelfloor
+      description: remove package as floor for a channel
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: flatcar-container-linux.removechannelfloor
+      with:
+        channelID: tools.channelID
+        packageID: tools.packageID
+      inputParameters:
+      - name: channelID
+        type: string
+        description: channelID
+        required: true
+      - name: packageID
+        type: string
+        description: packageID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paginatepackages
+      description: paginate packages of an app
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.paginatepackages
+      with:
+        appIDorProductID: tools.appIDorProductID
+        page: tools.page
+        perpage: tools.perpage
+        searchVersion: tools.searchVersion
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: page
+        type: integer
+        description: page
+      - name: perpage
+        type: integer
+        description: perpage
+      - name: searchVersion
+        type: string
+        description: searchVersion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createpackage
+      description: create package
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flatcar-container-linux.createpackage
+      with:
+        appIDorProductID: tools.appIDorProductID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpackage
+      description: get package given its packageID and appID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getpackage
+      with:
+        appIDorProductID: tools.appIDorProductID
+        packageID: tools.packageID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: packageID
+        type: string
+        description: packageID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatepackage
+      description: update package given its packageID and appID
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.updatepackage
+      with:
+        appIDorProductID: tools.appIDorProductID
+        packageID: tools.packageID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: packageID
+        type: string
+        description: packageID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletepackage
+      description: delete package given its packageID and appID
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: flatcar-container-linux.deletepackage
+      with:
+        appIDorProductID: tools.appIDorProductID
+        packageID: tools.packageID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: packageID
+        type: string
+        description: packageID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpackagefloorchannels
+      description: get all channels where a package is marked as a floor
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getpackagefloorchannels
+      with:
+        appIDorProductID: tools.appIDorProductID
+        packageID: tools.packageID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: packageID
+        type: string
+        description: packageID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getgroupinstances
+      description: get instances of a group given its groupID and appID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getgroupinstances
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+        status: tools.status
+        page: tools.page
+        perpage: tools.perpage
+        sortFilter: tools.sortFilter
+        sortOrder: tools.sortOrder
+        searchFilter: tools.searchFilter
+        searchValue: tools.searchValue
+        duration: tools.duration
+        version: tools.version
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      - name: status
+        type: integer
+        description: status
+        required: true
+      - name: page
+        type: integer
+        description: page
+      - name: perpage
+        type: integer
+        description: perpage
+      - name: sortFilter
+        type: string
+        description: sortFilter
+      - name: sortOrder
+        type: string
+        description: sortOrder
+      - name: searchFilter
+        type: string
+        description: searchFilter
+      - name: searchValue
+        type: string
+        description: searchValue
+      - name: duration
+        type: string
+        description: duration
+        required: true
+      - name: version
+        type: string
+        description: version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getgroupinstancescount
+      description: get instance count of a group given its groupID and appID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getgroupinstancescount
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+        duration: tools.duration
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      - name: duration
+        type: string
+        description: duration
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getinstance
+      description: get instance of a group given its groupID and appID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getinstance
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+        instanceID: tools.instanceID
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      - name: instanceID
+        type: string
+        description: instanceID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getinstancestatushistory
+      description: get instance status_history.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.getinstancestatushistory
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+        instanceID: tools.instanceID
+        limit: tools.limit
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+        required: true
+      - name: groupID
+        type: string
+        description: groupID
+        required: true
+      - name: instanceID
+        type: string
+        description: instanceID
+        required: true
+      - name: limit
+        type: integer
+        description: limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateinstance
+      description: update instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.updateinstance
+      with:
+        instanceID: tools.instanceID
+      inputParameters:
+      - name: instanceID
+        type: string
+        description: instanceID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paginateactivity
+      description: paginate activity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flatcar-container-linux.paginateactivity
+      with:
+        appIDorProductID: tools.appIDorProductID
+        groupID: tools.groupID
+        channelID: tools.channelID
+        instanceID: tools.instanceID
+        version: tools.version
+        severity: tools.severity
+        start: tools.start
+        end: tools.end
+        page: tools.page
+        perpage: tools.perpage
+      inputParameters:
+      - name: appIDorProductID
+        type: string
+        description: appIDorProductID
+      - name: groupID
+        type: string
+        description: groupID
+      - name: channelID
+        type: string
+        description: channelID
+      - name: instanceID
+        type: string
+        description: instanceID
+      - name: version
+        type: string
+        description: version
+      - name: severity
+        type: integer
+        description: severity
+      - name: start
+        type: string
+        description: start
+        required: true
+      - name: end
+        type: string
+        description: end
+        required: true
+      - name: page
+        type: integer
+        description: page
+      - name: perpage
+        type: integer
+        description: perpage
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    FLATCAR_CONTAINER_LINUX_TOKEN: FLATCAR_CONTAINER_LINUX_TOKEN
