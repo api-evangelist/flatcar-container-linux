@@ -1,0 +1,1149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nebraska",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "loginCb",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/login/cb"
+      },
+      "docs": "GitHub OAuth callback (GitHub mode only)"
+    },
+    {
+      "info": {
+        "name": "validateToken",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/login/validate_token"
+      },
+      "docs": "validate JWT access token (OIDC mode only)"
+    },
+    {
+      "info": {
+        "name": "loginWebhook",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/login/webhook",
+        "headers": [
+          {
+            "name": "X-Hub-Signature",
+            "value": ""
+          },
+          {
+            "name": "X-Github-Event",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "GitHub webhook (GitHub mode only)"
+    },
+    {
+      "info": {
+        "name": "health",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      },
+      "docs": "health endpoint"
+    },
+    {
+      "info": {
+        "name": "getConfig",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/config"
+      },
+      "docs": "get app config"
+    },
+    {
+      "info": {
+        "name": "omaha",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v1/update"
+      },
+      "docs": "omaha endpoint"
+    },
+    {
+      "info": {
+        "name": "paginateApps",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps",
+        "params": [
+          {
+            "name": "page",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "perpage",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get Apps"
+    },
+    {
+      "info": {
+        "name": "createApp",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/apps",
+        "params": [
+          {
+            "name": "clone_from",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "create app"
+    },
+    {
+      "info": {
+        "name": "getApp",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get app"
+    },
+    {
+      "info": {
+        "name": "updateApp",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "update app"
+    },
+    {
+      "info": {
+        "name": "deleteApp",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "delete app"
+    },
+    {
+      "info": {
+        "name": "paginateGroups",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "page",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "perpage",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "paginate groups of an app"
+    },
+    {
+      "info": {
+        "name": "createGroup",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "create group in app"
+    },
+    {
+      "info": {
+        "name": "getGroup",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get group given its groupID and appID"
+    },
+    {
+      "info": {
+        "name": "updateGroup",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "update group given its groupID and appID"
+    },
+    {
+      "info": {
+        "name": "deleteGroup",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "delete group given its groupID and appID"
+    },
+    {
+      "info": {
+        "name": "getGroupVersionTimeline",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID/version_timeline",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "duration",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get version timeline of a group given its groupID and appID"
+    },
+    {
+      "info": {
+        "name": "getGroupStatusTimeline",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID/status_timeline",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "duration",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get status timeline of a group given its groupID and appID"
+    },
+    {
+      "info": {
+        "name": "getGroupInstanceStats",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID/instances_stats",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "duration",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get instance stats of a group given its groupID and appID"
+    },
+    {
+      "info": {
+        "name": "getGroupVersionBreakdown",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID/version_breakdown",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get version breakdown of a group given its groupID and appID"
+    },
+    {
+      "info": {
+        "name": "paginateChannels",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/channels",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "page",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "perpage",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "paginate channels of an app"
+    },
+    {
+      "info": {
+        "name": "createChannel",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/channels",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "create channel"
+    },
+    {
+      "info": {
+        "name": "getChannel",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/channels/:channelID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "channelID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get channel by id"
+    },
+    {
+      "info": {
+        "name": "updateChannel",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/channels/:channelID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "channelID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "update channel by id"
+    },
+    {
+      "info": {
+        "name": "deleteChannel",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/channels/:channelID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "channelID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "delete channel by id"
+    },
+    {
+      "info": {
+        "name": "paginateChannelFloors",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/channels/:channelID/floors",
+        "params": [
+          {
+            "name": "channelID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "page",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "perpage",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "paginate floor packages of a channel"
+    },
+    {
+      "info": {
+        "name": "setChannelFloor",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/api/channels/:channelID/floors/:packageID",
+        "params": [
+          {
+            "name": "channelID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "packageID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Create or update a floor package relationship (idempotent operation)"
+    },
+    {
+      "info": {
+        "name": "removeChannelFloor",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/channels/:channelID/floors/:packageID",
+        "params": [
+          {
+            "name": "channelID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "packageID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "remove package as floor for a channel"
+    },
+    {
+      "info": {
+        "name": "paginatePackages",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/packages",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "page",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "perpage",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "searchVersion",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "paginate packages of an app"
+    },
+    {
+      "info": {
+        "name": "createPackage",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/packages",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "create package"
+    },
+    {
+      "info": {
+        "name": "getPackage",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/packages/:packageID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "packageID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get package given its packageID and appID"
+    },
+    {
+      "info": {
+        "name": "updatePackage",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/packages/:packageID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "packageID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "update package given its packageID and appID"
+    },
+    {
+      "info": {
+        "name": "deletePackage",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/packages/:packageID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "packageID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "delete package given its packageID and appID"
+    },
+    {
+      "info": {
+        "name": "getPackageFloorChannels",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/packages/:packageID/floor-channels",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "packageID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get all channels where a package is marked as a floor"
+    },
+    {
+      "info": {
+        "name": "getGroupInstances",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID/instances",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "status",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "page",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "perpage",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "sortFilter",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "sortOrder",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "searchFilter",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "searchValue",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "duration",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "version",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get instances of a group given its groupID and appID"
+    },
+    {
+      "info": {
+        "name": "getGroupInstancesCount",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID/instancescount",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "duration",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get instance count of a group given its groupID and appID"
+    },
+    {
+      "info": {
+        "name": "getInstance",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID/instances/:instanceID",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "instanceID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get instance of a group given its groupID and appID"
+    },
+    {
+      "info": {
+        "name": "getInstanceStatusHistory",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/apps/:appIDorProductID/groups/:groupID/instances/:instanceID/status_history",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "instanceID",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "get instance status_history."
+    },
+    {
+      "info": {
+        "name": "updateInstance",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/api/instances/:instanceID",
+        "params": [
+          {
+            "name": "instanceID",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "update instance"
+    },
+    {
+      "info": {
+        "name": "paginateActivity",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/activity",
+        "params": [
+          {
+            "name": "appIDorProductID",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "groupID",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "channelID",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "instanceID",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "version",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "severity",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "start",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "end",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "page",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "perpage",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "paginate activity"
+    }
+  ],
+  "bundled": true
+}
