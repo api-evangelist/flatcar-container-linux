@@ -57,7 +57,7 @@ common:
     url: https://github.com/flatcar/flatcar
   - type: NebraskaSource
     url: https://github.com/flatcar/nebraska
-  - type: Releases
+  - type: ReleaseNotes
     url: https://www.flatcar.org/releases/
   - type: Community
     url: https://www.flatcar.org/community/
