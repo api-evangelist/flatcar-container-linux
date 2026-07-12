@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/nebraska-update-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - cookie
+schemes:
+- name: oidcBearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/nebraska-update-api-openapi.yml
+- name: oidcCookieAuth
+  type: apiKey
+  in: cookie
+  parameter: oidc
+  sources:
+  - openapi/nebraska-update-api-openapi.yml
+- name: githubCookieAuth
+  type: apiKey
+  in: cookie
+  parameter: github
+  sources:
+  - openapi/nebraska-update-api-openapi.yml

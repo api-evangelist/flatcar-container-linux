@@ -47,6 +47,10 @@ apis:
       - type: SourceCode
         url: https://github.com/flatcar/nebraska
 common:
+  - type: DomainSecurity
+    url: security/flatcar-container-linux-domain-security.yml
+  - type: Authentication
+    url: authentication/flatcar-container-linux-authentication.yml
   - type: Website
     url: https://www.flatcar.org
   - type: Documentation
@@ -61,6 +65,8 @@ common:
     url: https://www.flatcar.org/releases/
   - type: Community
     url: https://www.flatcar.org/community/
+  - url: https://www.flatcar.org/blog/index.xml
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
