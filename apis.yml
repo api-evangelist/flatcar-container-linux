@@ -47,6 +47,8 @@ apis:
       - type: SourceCode
         url: https://github.com/flatcar/nebraska
 common:
+  - type: AgenticAccess
+    url: agentic-access/flatcar-container-linux-agentic-access.yml
   - type: DomainSecurity
     url: security/flatcar-container-linux-domain-security.yml
   - type: Authentication
