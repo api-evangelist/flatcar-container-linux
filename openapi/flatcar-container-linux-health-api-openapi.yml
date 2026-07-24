@@ -1,0 +1,36 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Nebraska Activity Health API
+  description: Nebraska is an update manager.
+  contact:
+    name: Flatcar Container Linux
+    email: maintainers@flatcar-linux.org
+    url: http://flatcar.org
+tags:
+- name: Health
+paths:
+  /health:
+    get:
+      operationId: health
+      description: health endpoint
+      security: []
+      responses:
+        '200':
+          description: health response
+      tags:
+      - Health
+components:
+  securitySchemes:
+    oidcBearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    oidcCookieAuth:
+      type: apiKey
+      in: cookie
+      name: oidc
+    githubCookieAuth:
+      type: apiKey
+      in: cookie
+      name: github

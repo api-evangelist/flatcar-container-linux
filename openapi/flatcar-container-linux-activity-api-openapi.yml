@@ -1,0 +1,171 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Nebraska Activity API
+  description: Nebraska is an update manager.
+  contact:
+    name: Flatcar Container Linux
+    email: maintainers@flatcar-linux.org
+    url: http://flatcar.org
+tags:
+- name: Activity
+paths:
+  /api/activity:
+    get:
+      description: paginate activity
+      operationId: paginateActivity
+      security:
+      - oidcBearerAuth: []
+      - oidcCookieAuth: []
+      - githubCookieAuth: []
+      parameters:
+      - in: query
+        name: appIDorProductID
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: groupID
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: channelID
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: instanceID
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: version
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: severity
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: start
+        required: true
+        schema:
+          type: string
+          format: string
+      - in: query
+        name: end
+        required: true
+        schema:
+          type: string
+          format: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+      - in: query
+        name: perpage
+        required: false
+        schema:
+          type: integer
+          minimum: 10
+      responses:
+        '200':
+          description: List activity success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/activityPage'
+        '404':
+          description: Activity not found response
+        '500':
+          description: List activity error response
+      tags:
+      - Activity
+components:
+  schemas:
+    activityPage:
+      type: object
+      required:
+      - totalCount
+      - count
+      - activities
+      properties:
+        totalCount:
+          type: integer
+        count:
+          type: integer
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/activity'
+    activity:
+      type: object
+      required:
+      - id
+      - appID
+      - groupID
+      - createdTs
+      - class
+      - severity
+      - version
+      - applicationName
+      - groupName
+      - channelName
+      - instanceID
+      properties:
+        id:
+          type: string
+        appID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: app_id
+        groupID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: group_id
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            db: created_ts
+            json: created_ts
+        class:
+          type: integer
+        severity:
+          type: integer
+        version:
+          type: string
+        applicationName:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: application_name
+        groupName:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: group_name
+        channelName:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: channel_name
+        instanceID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: instance_id
+  securitySchemes:
+    oidcBearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    oidcCookieAuth:
+      type: apiKey
+      in: cookie
+      name: oidc
+    githubCookieAuth:
+      type: apiKey
+      in: cookie
+      name: github

@@ -1,0 +1,143 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Nebraska Activity Instances API
+  description: Nebraska is an update manager.
+  contact:
+    name: Flatcar Container Linux
+    email: maintainers@flatcar-linux.org
+    url: http://flatcar.org
+tags:
+- name: Instances
+paths:
+  /api/instances/{instanceID}:
+    put:
+      description: update instance
+      operationId: updateInstance
+      security:
+      - oidcBearerAuth: []
+      - oidcCookieAuth: []
+      - githubCookieAuth: []
+      parameters:
+      - in: path
+        name: instanceID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: payload for update instance
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateInstanceConfig'
+      responses:
+        '200':
+          description: Update instance success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/instance'
+        '500':
+          description: Update instance error response
+      tags:
+      - Instances
+components:
+  schemas:
+    instanceApplication:
+      type: object
+      required:
+      - instanceID
+      - applicationID
+      - groupID
+      - version
+      - createdTs
+      - status
+      - lastCheckForUpdates
+      - lastUpdateGrantedTs
+      - lastUpdateVersion
+      - updateInProgress
+      properties:
+        instanceID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: instance_id
+        applicationID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: application_id
+        groupID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: group_id
+        version:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: version
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+        status:
+          type: integer
+        lastCheckForUpdates:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: last_check_for_updates
+        lastUpdateGrantedTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: last_update_granted_ts
+        lastUpdateVersion:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: last_update_version
+        updateInProgress:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: update_in_progress
+      x-oapi-codegen-extra-tags:
+        json: application
+    updateInstanceConfig:
+      type: object
+      required:
+      - alias
+      properties:
+        alias:
+          type: string
+    instance:
+      type: object
+      required:
+      - id
+      - ip
+      - createdTs
+      properties:
+        id:
+          type: string
+        ip:
+          type: string
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+        application:
+          $ref: '#/components/schemas/instanceApplication'
+        alias:
+          type: string
+  securitySchemes:
+    oidcBearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    oidcCookieAuth:
+      type: apiKey
+      in: cookie
+      name: oidc
+    githubCookieAuth:
+      type: apiKey
+      in: cookie
+      name: github

@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Nebraska Activity Update API
+  description: Nebraska is an update manager.
+  contact:
+    name: Flatcar Container Linux
+    email: maintainers@flatcar-linux.org
+    url: http://flatcar.org
+tags:
+- name: Update
+paths:
+  /v1/update:
+    post:
+      operationId: omaha
+      description: omaha endpoint
+      security: []
+      requestBody:
+        description: payload for omaha endpoint
+        required: true
+        content:
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/omahaRequest'
+      responses:
+        '200':
+          description: Omaha Response
+        '400':
+          description: Bad Request if request size is too large
+      tags:
+      - Update
+components:
+  schemas:
+    omahaRequest:
+      type: object
+  securitySchemes:
+    oidcBearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    oidcCookieAuth:
+      type: apiKey
+      in: cookie
+      name: oidc
+    githubCookieAuth:
+      type: apiKey
+      in: cookie
+      name: github

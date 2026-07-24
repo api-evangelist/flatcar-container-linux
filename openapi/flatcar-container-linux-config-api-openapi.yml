@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Nebraska Activity Config API
+  description: Nebraska is an update manager.
+  contact:
+    name: Flatcar Container Linux
+    email: maintainers@flatcar-linux.org
+    url: http://flatcar.org
+tags:
+- name: Config
+paths:
+  /config:
+    get:
+      operationId: getConfig
+      description: get app config
+      security: []
+      responses:
+        '200':
+          description: get config response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/config'
+      tags:
+      - Config
+components:
+  schemas:
+    config:
+      type: object
+      required:
+      - accessManagementUrl
+      - nebraskaVersion
+      - logo
+      - title
+      - headerStyle
+      - loginUrl
+      - authMode
+      properties:
+        accessManagementUrl:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: access_management_url
+        nebraskaVersion:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: nebraska_version
+        logo:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: logo
+        title:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: title
+        headerStyle:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: header_style
+        loginUrl:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: login_url
+        authMode:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: auth_mode
+        oidcIssuerUrl:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: oidc_issuer_url
+        oidcClientId:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: oidc_client_id
+        oidcScopes:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: oidc_scopes
+        oidcLogoutUrl:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: oidc_logout_url
+        oidcAudience:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: oidc_audience
+  securitySchemes:
+    oidcBearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    oidcCookieAuth:
+      type: apiKey
+      in: cookie
+      name: oidc
+    githubCookieAuth:
+      type: apiKey
+      in: cookie
+      name: github

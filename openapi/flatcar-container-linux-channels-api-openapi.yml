@@ -1,0 +1,289 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Nebraska Activity Channels API
+  description: Nebraska is an update manager.
+  contact:
+    name: Flatcar Container Linux
+    email: maintainers@flatcar-linux.org
+    url: http://flatcar.org
+tags:
+- name: Channels
+paths:
+  /api/channels/{channelID}/floors:
+    get:
+      description: paginate floor packages of a channel
+      operationId: paginateChannelFloors
+      security:
+      - oidcBearerAuth: []
+      - oidcCookieAuth: []
+      - githubCookieAuth: []
+      parameters:
+      - in: path
+        name: channelID
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          type: integer
+        required: false
+      - in: query
+        name: perpage
+        schema:
+          type: integer
+        required: false
+      responses:
+        '200':
+          description: Paginate channel floors success response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - packages
+                - current_page
+                - last_page
+                - total_count
+                properties:
+                  packages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/package'
+                  current_page:
+                    type: integer
+                    format: int32
+                  last_page:
+                    type: integer
+                    format: int32
+                  total_count:
+                    type: integer
+                    format: int32
+        '500':
+          description: Get channel floors error response
+      tags:
+      - Channels
+  /api/channels/{channelID}/floors/{packageID}:
+    put:
+      description: Create or update a floor package relationship (idempotent operation)
+      operationId: setChannelFloor
+      security:
+      - oidcBearerAuth: []
+      - oidcCookieAuth: []
+      - githubCookieAuth: []
+      parameters:
+      - in: path
+        name: channelID
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: packageID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                floor_reason:
+                  type: string
+                  nullable: true
+                  description: Optional reason for marking this package as a floor (e.g., "Introduces needed filesystem support to handle new updates after this version")
+                  maxLength: 500
+                  example: Introduces btrfs support in update-engine to handle new updates after this version
+      responses:
+        '200':
+          description: Floor package relationship created or updated successfully
+        '400':
+          description: Invalid request (architecture mismatch, wrong application, etc.)
+        '404':
+          description: Channel or package not found
+        '500':
+          description: Set channel floor error response
+      tags:
+      - Channels
+    delete:
+      description: remove package as floor for a channel
+      operationId: removeChannelFloor
+      security:
+      - oidcBearerAuth: []
+      - oidcCookieAuth: []
+      - githubCookieAuth: []
+      parameters:
+      - in: path
+        name: channelID
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: packageID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Remove channel floor success response
+        '404':
+          description: Floor relationship not found
+        '500':
+          description: Remove channel floor error response
+      tags:
+      - Channels
+components:
+  schemas:
+    arch:
+      type: integer
+    extraFiles:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          hash:
+            type: string
+          hash256:
+            type: string
+          size:
+            type: string
+      x-oapi-codegen-extra-tags:
+        json: extra_files
+    package:
+      type: object
+      required:
+      - id
+      - type
+      - version
+      - url
+      - filename
+      - description
+      - size
+      - hash
+      - createdTs
+      - channelsBlacklist
+      - applicationID
+      - arch
+      properties:
+        id:
+          type: string
+        type:
+          type: integer
+        version:
+          type: string
+        url:
+          type: string
+        filename:
+          type: string
+        description:
+          type: string
+        size:
+          type: string
+        hash:
+          type: string
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+        channelsBlacklist:
+          type: array
+          items:
+            type: string
+          x-oapi-codegen-extra-tags:
+            json: channels_blacklist
+        extraFiles:
+          $ref: '#/components/schemas/extraFiles'
+        applicationID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: application_id
+        flatcarAction:
+          $ref: '#/components/schemas/flatcarAction'
+        arch:
+          $ref: '#/components/schemas/arch'
+        isFloor:
+          type: boolean
+          description: Indicates if this package is a floor version for the current context
+          x-oapi-codegen-extra-tags:
+            json: is_floor,omitempty
+        floorReason:
+          type: string
+          nullable: true
+          description: Reason why this package is marked as a floor version
+          maxLength: 500
+          x-oapi-codegen-extra-tags:
+            json: floor_reason
+    flatcarAction:
+      type: object
+      required:
+      - id
+      - event
+      - chromeOSVersion
+      - sha256
+      - needsAdmin
+      - isDelta
+      - disablePayloadBackoff
+      - metadataSignatureRsa
+      - metadataSize
+      - deadline
+      - createdTs
+      properties:
+        id:
+          type: string
+        event:
+          type: string
+        chromeOSVersion:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: chromeos_version
+        sha256:
+          type: string
+        needsAdmin:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: needs_admin
+        isDelta:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: is_delta
+        disablePayloadBackoff:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: disable_payload_backoff
+        metadataSignatureRsa:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: metadata_signature_rsa
+        metadataSize:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: metadata_size
+        deadline:
+          type: string
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+      x-oapi-codegen-extra-tags:
+        json: flatcar_action
+  securitySchemes:
+    oidcBearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    oidcCookieAuth:
+      type: apiKey
+      in: cookie
+      name: oidc
+    githubCookieAuth:
+      type: apiKey
+      in: cookie
+      name: github
