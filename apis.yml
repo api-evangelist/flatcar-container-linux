@@ -6,7 +6,20 @@ description: >-
   Flatcar supports Kubernetes deployments on bare metal, cloud, and virtual environments with a focus on security and
   operational simplicity.
 url: https://raw.githubusercontent.com/api-evangelist/flatcar-container-linux/refs/heads/main/apis.yml
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/flatcar-container-linux.png
 tags:
   - Cloud Native
   - Containers
@@ -21,31 +34,118 @@ type: Index
 access: Open Source
 position: Producer
 apis:
-  - aid: flatcar-container-linux:nebraska-update-api
-    name: Flatcar Nebraska Update API
-    description: >-
-      Nebraska is the update management server for Flatcar Container Linux. It exposes a REST API for managing update
-      applications, packages, channels, groups, instances, and activity. Flatcar instances poll Nebraska using the Omaha
-      protocol for controlled rollouts, version pinning, and update monitoring across fleets of Flatcar nodes.
-    humanURL: https://www.flatcar.org/docs/latest/nebraska/
-    baseURL: https://nebraska.flatcar-linux.org/api
-    tags:
-      - Activity
-      - Applications
-      - Channels
-      - Fleet Management
-      - Groups
-      - Instances
-      - Omaha Protocol
-      - Packages
-      - Updates
-    properties:
-      - type: Documentation
-        url: https://www.flatcar.org/docs/latest/nebraska/
-      - type: OpenAPI
-        url: openapi/nebraska-update-api-openapi.yml
-      - type: SourceCode
-        url: https://github.com/flatcar/nebraska
+- aid: flatcar-container-linux:flatcar-container-linux-activity-api
+  name: Flatcar Container Linux Activity API
+  description: The Activity API from Flatcar Container Linux — 1 operation(s) for activity.
+  humanURL: https://www.flatcar.org/docs/latest/nebraska/
+  baseURL: https://nebraska.flatcar-linux.org/api
+  tags:
+  - Activity
+  properties:
+  - type: OpenAPI
+    url: openapi/flatcar-container-linux-activity-api-openapi.yml
+  - type: Documentation
+    url: https://www.flatcar.org/docs/latest/nebraska/
+  - type: SourceCode
+    url: https://github.com/flatcar/nebraska
+- aid: flatcar-container-linux:flatcar-container-linux-apps-api
+  name: Flatcar Container Linux Apps API
+  description: The Apps API from Flatcar Container Linux — 17 operation(s) for apps.
+  humanURL: https://www.flatcar.org/docs/latest/nebraska/
+  baseURL: https://nebraska.flatcar-linux.org/api
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/flatcar-container-linux-apps-api-openapi.yml
+  - type: Documentation
+    url: https://www.flatcar.org/docs/latest/nebraska/
+  - type: SourceCode
+    url: https://github.com/flatcar/nebraska
+- aid: flatcar-container-linux:flatcar-container-linux-channels-api
+  name: Flatcar Container Linux Channels API
+  description: The Channels API from Flatcar Container Linux — 2 operation(s) for channels.
+  humanURL: https://www.flatcar.org/docs/latest/nebraska/
+  baseURL: https://nebraska.flatcar-linux.org/api
+  tags:
+  - Channels
+  properties:
+  - type: OpenAPI
+    url: openapi/flatcar-container-linux-channels-api-openapi.yml
+  - type: Documentation
+    url: https://www.flatcar.org/docs/latest/nebraska/
+  - type: SourceCode
+    url: https://github.com/flatcar/nebraska
+- aid: flatcar-container-linux:flatcar-container-linux-config-api
+  name: Flatcar Container Linux Config API
+  description: The Config API from Flatcar Container Linux — 1 operation(s) for config.
+  humanURL: https://www.flatcar.org/docs/latest/nebraska/
+  baseURL: https://nebraska.flatcar-linux.org/api
+  tags:
+  - Config
+  properties:
+  - type: OpenAPI
+    url: openapi/flatcar-container-linux-config-api-openapi.yml
+  - type: Documentation
+    url: https://www.flatcar.org/docs/latest/nebraska/
+  - type: SourceCode
+    url: https://github.com/flatcar/nebraska
+- aid: flatcar-container-linux:flatcar-container-linux-health-api
+  name: Flatcar Container Linux Health API
+  description: The Health API from Flatcar Container Linux — 1 operation(s) for health.
+  humanURL: https://www.flatcar.org/docs/latest/nebraska/
+  baseURL: https://nebraska.flatcar-linux.org/api
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/flatcar-container-linux-health-api-openapi.yml
+  - type: Documentation
+    url: https://www.flatcar.org/docs/latest/nebraska/
+  - type: SourceCode
+    url: https://github.com/flatcar/nebraska
+- aid: flatcar-container-linux:flatcar-container-linux-instances-api
+  name: Flatcar Container Linux Instances API
+  description: The Instances API from Flatcar Container Linux — 1 operation(s) for instances.
+  humanURL: https://www.flatcar.org/docs/latest/nebraska/
+  baseURL: https://nebraska.flatcar-linux.org/api
+  tags:
+  - Instances
+  properties:
+  - type: OpenAPI
+    url: openapi/flatcar-container-linux-instances-api-openapi.yml
+  - type: Documentation
+    url: https://www.flatcar.org/docs/latest/nebraska/
+  - type: SourceCode
+    url: https://github.com/flatcar/nebraska
+- aid: flatcar-container-linux:flatcar-container-linux-login-api
+  name: Flatcar Container Linux Login API
+  description: The Login API from Flatcar Container Linux — 3 operation(s) for login.
+  humanURL: https://www.flatcar.org/docs/latest/nebraska/
+  baseURL: https://nebraska.flatcar-linux.org/api
+  tags:
+  - Login
+  properties:
+  - type: OpenAPI
+    url: openapi/flatcar-container-linux-login-api-openapi.yml
+  - type: Documentation
+    url: https://www.flatcar.org/docs/latest/nebraska/
+  - type: SourceCode
+    url: https://github.com/flatcar/nebraska
+- aid: flatcar-container-linux:flatcar-container-linux-update-api
+  name: Flatcar Container Linux Update API
+  description: The Update API from Flatcar Container Linux — 1 operation(s) for update.
+  humanURL: https://www.flatcar.org/docs/latest/nebraska/
+  baseURL: https://nebraska.flatcar-linux.org/api
+  tags:
+  - Update
+  properties:
+  - type: OpenAPI
+    url: openapi/flatcar-container-linux-update-api-openapi.yml
+  - type: Documentation
+    url: https://www.flatcar.org/docs/latest/nebraska/
+  - type: SourceCode
+    url: https://github.com/flatcar/nebraska
 common:
   - type: AgenticAccess
     url: agentic-access/flatcar-container-linux-agentic-access.yml
