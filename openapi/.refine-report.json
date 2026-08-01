@@ -1,0 +1,28 @@
+{
+  "provider": "flatcar-container-linux",
+  "sources": [
+    "flatcar-container-linux-activity-api-openapi.yml",
+    "flatcar-container-linux-apps-api-openapi.yml",
+    "flatcar-container-linux-channels-api-openapi.yml",
+    "flatcar-container-linux-config-api-openapi.yml",
+    "flatcar-container-linux-health-api-openapi.yml",
+    "flatcar-container-linux-instances-api-openapi.yml",
+    "flatcar-container-linux-login-api-openapi.yml",
+    "flatcar-container-linux-update-api-openapi.yml"
+  ],
+  "outputs": [
+    "flatcar-container-linux-activity-api-openapi.yml",
+    "flatcar-container-linux-apps-api-openapi.yml",
+    "flatcar-container-linux-channels-api-openapi.yml",
+    "flatcar-container-linux-config-api-openapi.yml",
+    "flatcar-container-linux-health-api-openapi.yml",
+    "flatcar-container-linux-instances-api-openapi.yml",
+    "flatcar-container-linux-login-api-openapi.yml",
+    "flatcar-container-linux-update-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
