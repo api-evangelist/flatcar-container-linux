@@ -147,6 +147,19 @@ apis:
   - type: SourceCode
     url: https://github.com/flatcar/nebraska
 common:
+  - type: IssueTracker
+    url: https://github.com/flatcar/nebraska/issues
+  - type: Releases
+    url: https://github.com/flatcar/nebraska/releases
+  - type: SecurityPolicy
+    url: https://github.com/flatcar/nebraska/blob/main/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/flatcar/nebraska/blob/main/code-of-conduct.md
+  - type: ContributionGuide
+    url: https://github.com/flatcar/nebraska/blob/main/CONTRIBUTING.md
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/flatcar/nebraska/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/flatcar-container-linux-agentic-access.yml
   - type: DomainSecurity
