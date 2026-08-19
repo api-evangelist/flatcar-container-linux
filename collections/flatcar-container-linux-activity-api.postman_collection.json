@@ -1,0 +1,376 @@
+{
+  "item": [
+    {
+      "id": "2722d9c7-6f97-4ac7-97da-334158482163",
+      "name": "Activity",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7fcadf6-1d23-4e5c-a2ee-10e3ac7c593f",
+          "name": "paginate Activity",
+          "request": {
+            "name": "paginate Activity",
+            "description": {
+              "content": "paginate activity",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appIDorProductID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "channelID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "instanceID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "perpage",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "171a18bf-98a7-41cd-b7e0-bc52d81b8b80",
+              "name": "List activity success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appIDorProductID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channelID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "instanceID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perpage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 7513,\n  \"count\": 9920,\n  \"activities\": [\n    {\n      \"id\": \"string\",\n      \"appID\": \"string\",\n      \"groupID\": \"string\",\n      \"createdTs\": \"1984-06-20T14:50:30.119Z\",\n      \"class\": 8749,\n      \"severity\": 1580,\n      \"version\": \"string\",\n      \"applicationName\": \"string\",\n      \"groupName\": \"string\",\n      \"channelName\": \"string\",\n      \"instanceID\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"appID\": \"string\",\n      \"groupID\": \"string\",\n      \"createdTs\": \"1976-04-24T19:21:13.146Z\",\n      \"class\": 6751,\n      \"severity\": 2722,\n      \"version\": \"string\",\n      \"applicationName\": \"string\",\n      \"groupName\": \"string\",\n      \"channelName\": \"string\",\n      \"instanceID\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcf25f80-4054-4363-bebd-dffd42e15e8e",
+              "name": "Activity not found response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appIDorProductID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channelID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "instanceID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perpage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a23a7217-bb8d-4aed-943c-4302fb51ea6c",
+              "name": "List activity error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appIDorProductID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channelID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "instanceID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perpage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4aa4f94d-454c-49c1-a26c-47250d1068a5",
+    "name": "Nebraska Activity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nebraska is an update manager.\n\nContact Support:\n Name: Flatcar Container Linux\n Email: maintainers@flatcar-linux.org",
+      "type": "text/plain"
+    }
+  }
+}

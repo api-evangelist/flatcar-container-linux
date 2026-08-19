@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nebraska Activity Login API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Login",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "loginCb",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/login/cb"
+          },
+          "docs": "GitHub OAuth callback (GitHub mode only)"
+        },
+        {
+          "info": {
+            "name": "validateToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/login/validate_token"
+          },
+          "docs": "validate JWT access token (OIDC mode only)"
+        },
+        {
+          "info": {
+            "name": "loginWebhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/login/webhook",
+            "headers": [
+              {
+                "name": "X-Hub-Signature",
+                "value": ""
+              },
+              {
+                "name": "X-Github-Event",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "GitHub webhook (GitHub mode only)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

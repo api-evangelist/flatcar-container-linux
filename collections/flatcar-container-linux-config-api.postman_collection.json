@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "34558a8f-060b-4cad-904c-3f1dfc6dfb57",
+      "name": "Config",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6ee684c-826d-4137-9409-b51da4ee3b54",
+          "name": "get Config",
+          "request": {
+            "name": "get Config",
+            "description": {
+              "content": "get app config",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56b8d871-6d8a-4d7e-bc50-469f7ccb19f9",
+              "name": "get config response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accessManagementUrl\": \"string\",\n  \"nebraskaVersion\": \"string\",\n  \"logo\": \"string\",\n  \"title\": \"string\",\n  \"headerStyle\": \"string\",\n  \"loginUrl\": \"string\",\n  \"authMode\": \"string\",\n  \"oidcIssuerUrl\": \"string\",\n  \"oidcClientId\": \"string\",\n  \"oidcScopes\": \"string\",\n  \"oidcLogoutUrl\": \"string\",\n  \"oidcAudience\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a57374a0-e7c8-49b4-8c2c-42cf9e8176e3",
+    "name": "Nebraska Activity Config API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nebraska is an update manager.\n\nContact Support:\n Name: Flatcar Container Linux\n Email: maintainers@flatcar-linux.org",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,784 @@
+{
+  "item": [
+    {
+      "id": "a3d88c11-a322-4fc0-965e-61e758f79588",
+      "name": "Channels",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11ced867-977c-4d13-a2ce-9f8b9ebaf29a",
+          "name": "paginate Channel Floors",
+          "request": {
+            "name": "paginate Channel Floors",
+            "description": {
+              "content": "paginate floor packages of a channel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":channelID",
+                "floors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "perpage",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "12e86579-c395-4c49-a20c-76ff73b76145",
+              "name": "Paginate channel floors success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":channelID",
+                    "floors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perpage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"packages\": [\n    {\n      \"id\": \"string\",\n      \"type\": 5848,\n      \"version\": \"string\",\n      \"url\": \"string\",\n      \"filename\": \"string\",\n      \"description\": \"string\",\n      \"size\": \"string\",\n      \"hash\": \"string\",\n      \"createdTs\": \"1992-04-06T13:54:17.507Z\",\n      \"channelsBlacklist\": [\n        \"string\",\n        \"string\"\n      ],\n      \"applicationID\": \"string\",\n      \"arch\": 7949,\n      \"extraFiles\": [\n        {\n          \"id\": 148,\n          \"name\": \"string\",\n          \"hash\": \"string\",\n          \"hash256\": \"string\",\n          \"size\": \"string\"\n        },\n        {\n          \"id\": 4913,\n          \"name\": \"string\",\n          \"hash\": \"string\",\n          \"hash256\": \"string\",\n          \"size\": \"string\"\n        }\n      ],\n      \"flatcarAction\": {\n        \"id\": \"string\",\n        \"event\": \"string\",\n        \"chromeOSVersion\": \"string\",\n        \"sha256\": \"string\",\n        \"needsAdmin\": false,\n        \"isDelta\": true,\n        \"disablePayloadBackoff\": false,\n        \"metadataSignatureRsa\": \"string\",\n        \"metadataSize\": \"string\",\n        \"deadline\": \"string\",\n        \"createdTs\": \"2025-11-03T22:30:13.366Z\"\n      },\n      \"isFloor\": true,\n      \"floorReason\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": 3654,\n      \"version\": \"string\",\n      \"url\": \"string\",\n      \"filename\": \"string\",\n      \"description\": \"string\",\n      \"size\": \"string\",\n      \"hash\": \"string\",\n      \"createdTs\": \"2003-03-11T02:31:19.119Z\",\n      \"channelsBlacklist\": [\n        \"string\",\n        \"string\"\n      ],\n      \"applicationID\": \"string\",\n      \"arch\": 5,\n      \"extraFiles\": [\n        {\n          \"id\": 9609,\n          \"name\": \"string\",\n          \"hash\": \"string\",\n          \"hash256\": \"string\",\n          \"size\": \"string\"\n        },\n        {\n          \"id\": 9171,\n          \"name\": \"string\",\n          \"hash\": \"string\",\n          \"hash256\": \"string\",\n          \"size\": \"string\"\n        }\n      ],\n      \"flatcarAction\": {\n        \"id\": \"string\",\n        \"event\": \"string\",\n        \"chromeOSVersion\": \"string\",\n        \"sha256\": \"string\",\n        \"needsAdmin\": false,\n        \"isDelta\": false,\n        \"disablePayloadBackoff\": true,\n        \"metadataSignatureRsa\": \"string\",\n        \"metadataSize\": \"string\",\n        \"deadline\": \"string\",\n        \"createdTs\": \"1985-03-01T05:31:27.832Z\"\n      },\n      \"isFloor\": false,\n      \"floorReason\": \"string\"\n    }\n  ],\n  \"current_page\": 2746,\n  \"last_page\": 381,\n  \"total_count\": 8719\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58866cd9-64da-422c-8e19-31d0c208e92a",
+              "name": "Get channel floors error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":channelID",
+                    "floors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perpage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d0fdde5-3d43-441d-ada4-8d1a39faac76",
+          "name": "set Channel Floor",
+          "request": {
+            "name": "set Channel Floor",
+            "description": {
+              "content": "Create or update a floor package relationship (idempotent operation)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":channelID",
+                "floors",
+                ":packageID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packageID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"floor_reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd357a8c-ee39-47ae-b329-c47ec11dc0c1",
+              "name": "Floor package relationship created or updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":channelID",
+                    "floors",
+                    ":packageID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"floor_reason\": \"Introduces btrfs support in update-engine to handle new updates after this version\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ac65619-6c6b-4d0e-83bf-714ae2303d16",
+              "name": "Invalid request (architecture mismatch, wrong application, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":channelID",
+                    "floors",
+                    ":packageID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"floor_reason\": \"Introduces btrfs support in update-engine to handle new updates after this version\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f429e039-ffae-4dcb-914b-d49ca78c2b99",
+              "name": "Channel or package not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":channelID",
+                    "floors",
+                    ":packageID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"floor_reason\": \"Introduces btrfs support in update-engine to handle new updates after this version\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c7445d42-fd0d-4439-999e-1346c353c305",
+              "name": "Set channel floor error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":channelID",
+                    "floors",
+                    ":packageID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"floor_reason\": \"Introduces btrfs support in update-engine to handle new updates after this version\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20e17838-ff19-4645-b8c5-ce22929b6402",
+          "name": "remove Channel Floor",
+          "request": {
+            "name": "remove Channel Floor",
+            "description": {
+              "content": "remove package as floor for a channel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":channelID",
+                "floors",
+                ":packageID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packageID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f136879c-9d8b-473c-865d-2e32772df228",
+              "name": "Remove channel floor success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":channelID",
+                    "floors",
+                    ":packageID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3434243c-76dc-4048-8e7f-cd9f271ac471",
+              "name": "Floor relationship not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":channelID",
+                    "floors",
+                    ":packageID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4aaf8f7f-c4e5-4c2a-a536-ea19e911d836",
+              "name": "Remove channel floor error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":channelID",
+                    "floors",
+                    ":packageID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "371f771f-01be-4639-b0a7-8144cecb29d8",
+    "name": "Nebraska Activity Channels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nebraska is an update manager.\n\nContact Support:\n Name: Flatcar Container Linux\n Email: maintainers@flatcar-linux.org",
+      "type": "text/plain"
+    }
+  }
+}

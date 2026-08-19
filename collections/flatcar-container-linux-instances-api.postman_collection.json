@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "f17f7c3d-30ab-4968-b3e5-513b68db4207",
+      "name": "Instances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "034f2f60-558e-43c2-b7c0-d3d4f6cdb49d",
+          "name": "update Instance",
+          "request": {
+            "name": "update Instance",
+            "description": {
+              "content": "update instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "instances",
+                ":instanceID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alias\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "125f7824-b9d8-4f29-90b7-1f4f6906e6a4",
+              "name": "Update instance success response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "instances",
+                    ":instanceID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alias\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"ip\": \"string\",\n  \"createdTs\": \"2014-07-03T03:23:17.436Z\",\n  \"application\": {\n    \"instanceID\": \"string\",\n    \"applicationID\": \"string\",\n    \"groupID\": \"string\",\n    \"version\": \"string\",\n    \"createdTs\": \"2025-03-24T18:16:42.485Z\",\n    \"status\": 4449,\n    \"lastCheckForUpdates\": \"2005-05-20T07:20:13.882Z\",\n    \"lastUpdateGrantedTs\": \"1960-06-26T18:00:49.874Z\",\n    \"lastUpdateVersion\": \"string\",\n    \"updateInProgress\": false\n  },\n  \"alias\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49fc9c2e-b286-4979-927f-c67672bd2c02",
+              "name": "Update instance error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "instances",
+                    ":instanceID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alias\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8defa5d5-c02b-4b81-aeb3-bb600b61dd98",
+    "name": "Nebraska Activity Instances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nebraska is an update manager.\n\nContact Support:\n Name: Flatcar Container Linux\n Email: maintainers@flatcar-linux.org",
+      "type": "text/plain"
+    }
+  }
+}
