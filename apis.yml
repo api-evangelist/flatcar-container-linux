@@ -21,6 +21,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/flatcar-container-linux.png
 tags:
+  - Cloud-Native
+  - Containers
+  - Immutable Infrastructure
+  - Incubating
+  - Linux
+  - Operating System
+tags_raw:
   - Cloud Native
   - Containers
   - Immutable Infrastructure
@@ -54,6 +61,8 @@ apis:
   humanURL: https://www.flatcar.org/docs/latest/nebraska/
   baseURL: https://nebraska.flatcar-linux.org/api
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI
@@ -137,7 +146,8 @@ apis:
   description: The Update API from Flatcar Container Linux — 1 operation(s) for update.
   humanURL: https://www.flatcar.org/docs/latest/nebraska/
   baseURL: https://nebraska.flatcar-linux.org/api
-  tags:
+  tags: []
+  tags_raw:
   - Update
   properties:
   - type: OpenAPI
