@@ -6,6 +6,19 @@ description: >-
   Flatcar supports Kubernetes deployments on bare metal, cloud, and virtual environments with a focus on security and
   operational simplicity.
 url: https://raw.githubusercontent.com/api-evangelist/flatcar-container-linux/refs/heads/main/apis.yml
+deliveryModel:
+  model: self-hosted
+  license: Apache-2.0
+  open_source: true
+  commercial: false
+  callable_host: false
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
