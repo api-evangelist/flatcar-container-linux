@@ -26,11 +26,12 @@ accessModel:
   try_now: true
   public: false
   label: Freemium · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/flatcar-container-linux.png
 tags:
@@ -52,7 +53,7 @@ modified: '2026-05-19'
 specificationVersion: '0.23'
 type: Index
 access: Open Source
-position: Producer
+position: Producing
 apis:
 - aid: flatcar-container-linux:flatcar-container-linux-activity-api
   name: Flatcar Container Linux Activity API
