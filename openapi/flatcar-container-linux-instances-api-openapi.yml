@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Nebraska Activity Instances API
+  title: Nebraska Instances API
   description: Nebraska is an update manager.
   contact:
     name: Flatcar Container Linux
@@ -42,8 +42,30 @@ paths:
           description: Update instance error response
       tags:
       - Instances
+      summary: Update instance
+      x-summary-source: derived
 components:
   schemas:
+    instance:
+      type: object
+      required:
+      - id
+      - ip
+      - createdTs
+      properties:
+        id:
+          type: string
+        ip:
+          type: string
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+        application:
+          $ref: '#/components/schemas/instanceApplication'
+        alias:
+          type: string
     instanceApplication:
       type: object
       required:
@@ -106,26 +128,6 @@ components:
       required:
       - alias
       properties:
-        alias:
-          type: string
-    instance:
-      type: object
-      required:
-      - id
-      - ip
-      - createdTs
-      properties:
-        id:
-          type: string
-        ip:
-          type: string
-        createdTs:
-          type: string
-          format: date-time
-          x-oapi-codegen-extra-tags:
-            json: created_ts
-        application:
-          $ref: '#/components/schemas/instanceApplication'
         alias:
           type: string
   securitySchemes:

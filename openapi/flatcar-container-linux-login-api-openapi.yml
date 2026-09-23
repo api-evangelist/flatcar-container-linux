@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Nebraska Activity Login API
+  title: Nebraska Login API
   description: Nebraska is an update manager.
   contact:
     name: Flatcar Container Linux
@@ -34,6 +34,8 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
       tags:
       - Login
+      summary: Login cb
+      x-summary-source: derived
   /login/validate_token:
     get:
       operationId: validateToken
@@ -52,6 +54,8 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
       tags:
       - Login
+      summary: Validate token
+      x-summary-source: derived
   /login/webhook:
     post:
       operationId: loginWebhook
@@ -79,6 +83,8 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
       tags:
       - Login
+      summary: Login webhook
+      x-summary-source: derived
 components:
   schemas:
     errorResponse:

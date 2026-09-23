@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
   title: Nebraska Activity API
@@ -86,23 +86,10 @@ paths:
           description: List activity error response
       tags:
       - Activity
+      summary: Paginate activity
+      x-summary-source: derived
 components:
   schemas:
-    activityPage:
-      type: object
-      required:
-      - totalCount
-      - count
-      - activities
-      properties:
-        totalCount:
-          type: integer
-        count:
-          type: integer
-        activities:
-          type: array
-          items:
-            $ref: '#/components/schemas/activity'
     activity:
       type: object
       required:
@@ -156,6 +143,21 @@ components:
           type: string
           x-oapi-codegen-extra-tags:
             json: instance_id
+    activityPage:
+      type: object
+      required:
+      - totalCount
+      - count
+      - activities
+      properties:
+        totalCount:
+          type: integer
+        count:
+          type: integer
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/activity'
   securitySchemes:
     oidcBearerAuth:
       type: http

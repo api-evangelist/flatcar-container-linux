@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Nebraska Activity Health API
+  title: Nebraska Health API
   description: Nebraska is an update manager.
   contact:
     name: Flatcar Container Linux
@@ -20,6 +20,8 @@ paths:
           description: health response
       tags:
       - Health
+      summary: Health
+      x-summary-source: derived
 components:
   securitySchemes:
     oidcBearerAuth:

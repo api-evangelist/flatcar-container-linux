@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Nebraska Activity Update API
+  title: Nebraska Update API
   description: Nebraska is an update manager.
   contact:
     name: Flatcar Container Linux
@@ -29,6 +29,8 @@ paths:
           description: Bad Request if request size is too large
       tags:
       - Update
+      summary: Omaha
+      x-summary-source: derived
 components:
   schemas:
     omahaRequest:

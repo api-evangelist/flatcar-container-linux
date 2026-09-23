@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Nebraska Activity Channels API
+  title: Nebraska Channels API
   description: Nebraska is an update manager.
   contact:
     name: Flatcar Container Linux
@@ -64,6 +64,8 @@ paths:
           description: Get channel floors error response
       tags:
       - Channels
+      summary: Paginate channel floors
+      x-summary-source: derived
   /api/channels/{channelID}/floors/{packageID}:
     put:
       description: Create or update a floor package relationship (idempotent operation)
@@ -91,8 +93,9 @@ paths:
               type: object
               properties:
                 floor_reason:
-                  type: string
-                  nullable: true
+                  type:
+                  - string
+                  - 'null'
                   description: Optional reason for marking this package as a floor (e.g., "Introduces needed filesystem support to handle new updates after this version")
                   maxLength: 500
                   example: Introduces btrfs support in update-engine to handle new updates after this version
@@ -107,6 +110,8 @@ paths:
           description: Set channel floor error response
       tags:
       - Channels
+      summary: Set channel floor
+      x-summary-source: derived
     delete:
       description: remove package as floor for a channel
       operationId: removeChannelFloor
@@ -134,27 +139,10 @@ paths:
           description: Remove channel floor error response
       tags:
       - Channels
+      summary: Remove channel floor
+      x-summary-source: derived
 components:
   schemas:
-    arch:
-      type: integer
-    extraFiles:
-      type: array
-      items:
-        type: object
-        properties:
-          id:
-            type: integer
-          name:
-            type: string
-          hash:
-            type: string
-          hash256:
-            type: string
-          size:
-            type: string
-      x-oapi-codegen-extra-tags:
-        json: extra_files
     package:
       type: object
       required:
@@ -214,12 +202,32 @@ components:
           x-oapi-codegen-extra-tags:
             json: is_floor,omitempty
         floorReason:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Reason why this package is marked as a floor version
           maxLength: 500
           x-oapi-codegen-extra-tags:
             json: floor_reason
+    extraFiles:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          hash:
+            type: string
+          hash256:
+            type: string
+          size:
+            type: string
+      x-oapi-codegen-extra-tags:
+        json: extra_files
+    arch:
+      type: integer
     flatcarAction:
       type: object
       required:
