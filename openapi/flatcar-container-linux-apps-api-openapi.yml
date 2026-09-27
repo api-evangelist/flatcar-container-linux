@@ -1122,239 +1122,6 @@ components:
           type:
           - string
           - 'null'
-    group:
-      type: object
-      required:
-      - id
-      - name
-      - description
-      - createdTs
-      - rolloutInProgress
-      - applicationID
-      - channelID
-      - policyUpdatesEnabled
-      - policySafeMode
-      - policyOfficeHours
-      - policyTimezone
-      - policyPeriodInterval
-      - policyMaxUpdatesPerPeriod
-      - policyUpdateTimeout
-      - track
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdTs:
-          type: string
-          format: date-time
-          x-oapi-codegen-extra-tags:
-            json: created_ts
-        rolloutInProgress:
-          type: boolean
-          x-oapi-codegen-extra-tags:
-            json: rollout_in_progress
-        applicationID:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: application_id
-        channelID:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: channel_id
-        policyUpdatesEnabled:
-          type: boolean
-          x-oapi-codegen-extra-tags:
-            json: policy_updates_enabled
-        policySafeMode:
-          type: boolean
-          x-oapi-codegen-extra-tags:
-            json: policy_safe_mode
-        policyOfficeHours:
-          type: boolean
-          x-oapi-codegen-extra-tags:
-            json: policy_office_hours
-        policyTimezone:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: policy_timezone
-        policyPeriodInterval:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: policy_period_interval
-        policyMaxUpdatesPerPeriod:
-          type: integer
-          minimum: 0
-          x-oapi-codegen-extra-tags:
-            json: policy_max_updates_per_period
-        policyUpdateTimeout:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: policy_update_timeout
-        channel:
-          $ref: '#/components/schemas/channel'
-        track:
-          type: string
-    arch:
-      type: integer
-    channelPage:
-      type: object
-      required:
-      - totalCount
-      - count
-      - channels
-      properties:
-        totalCount:
-          type: integer
-        count:
-          type: integer
-        channels:
-          type: array
-          items:
-            $ref: '#/components/schemas/channel'
-    groupVersionCountTimeline:
-      type: object
-      x-go-type: map[time.Time]map[string]uint64
-    versionBreakdownEntry:
-      type: object
-      required:
-      - version
-      - instance
-      - percentage
-      properties:
-        version:
-          type: string
-        instances:
-          type: integer
-        percentage:
-          type: number
-          format: double
-    instanceStatusHistories:
-      type: array
-      items:
-        $ref: '#/components/schemas/instanceStatusHistory'
-    instanceStatusHistory:
-      type: object
-      required:
-      - status
-      - verison
-      - createdTs
-      - errorCode
-      properties:
-        status:
-          type: integer
-        verison:
-          type: string
-        createdTs:
-          type: string
-          format: date-time
-          x-oapi-codegen-extra-tags:
-            json: created_ts
-        errorCode:
-          type: string
-          x-oapi-codegen-extra-tags:
-            db: error_code
-            json: error_code
-    application:
-      type: object
-      required:
-      - id
-      - name
-      - description
-      - createdTs
-      - groups
-      - channels
-      - instances
-      - productId
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdTs:
-          type: string
-          format: date-time
-          x-oapi-codegen-extra-tags:
-            json: created_ts
-        productId:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: product_id
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/group'
-        channels:
-          type: array
-          items:
-            $ref: '#/components/schemas/channel'
-        instances:
-          type: object
-          required:
-          - count
-          properties:
-            count:
-              type: integer
-    channel:
-      type: object
-      required:
-      - id
-      - name
-      - color
-      - createdTs
-      - applicationID
-      - packageID
-      - arch
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-          maxLength: 50
-        color:
-          type: string
-        createdTs:
-          type: string
-          format: date-time
-          x-oapi-codegen-extra-tags:
-            json: created_ts
-        applicationID:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: application_id
-        packageID:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: package_id
-        package:
-          $ref: '#/components/schemas/package'
-        arch:
-          $ref: '#/components/schemas/arch'
-      x-oapi-codegen-extra-tags:
-        db: channel
-    groupVersionBreakdown:
-      type: array
-      items:
-        $ref: '#/components/schemas/versionBreakdownEntry'
-    groupPage:
-      type: object
-      required:
-      - totalCount
-      - count
-      - groups
-      properties:
-        totalCount:
-          type: integer
-        count:
-          type: integer
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/group'
     packageConfig:
       type: object
       required:
@@ -1395,87 +1162,138 @@ components:
           $ref: '#/components/schemas/flatcarActionPackage'
         extraFiles:
           $ref: '#/components/schemas/extraFiles'
-    packagePage:
+    extraFiles:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          hash:
+            type: string
+          hash256:
+            type: string
+          size:
+            type: string
+      x-oapi-codegen-extra-tags:
+        json: extra_files
+    versionBreakdownEntry:
+      type: object
+      required:
+      - version
+      - instance
+      - percentage
+      properties:
+        version:
+          type: string
+        instances:
+          type: integer
+        percentage:
+          type: number
+          format: double
+    groupPage:
       type: object
       required:
       - totalCount
       - count
-      - packages
+      - groups
       properties:
         totalCount:
           type: integer
         count:
           type: integer
-        packages:
+        groups:
           type: array
           items:
-            $ref: '#/components/schemas/package'
-    package:
+            $ref: '#/components/schemas/group'
+    flatcarActionPackage:
       type: object
-      required:
-      - id
-      - type
-      - version
-      - url
-      - filename
-      - description
-      - size
-      - hash
-      - createdTs
-      - channelsBlacklist
-      - applicationID
-      - arch
       properties:
         id:
           type: string
-        type:
+        sha256:
+          type: string
+      x-oapi-codegen-extra-tags:
+        json: flatcar_action
+    groupInstanceStats:
+      type: object
+      required:
+      - total
+      - undefined
+      - updateGranted
+      - error
+      - complete
+      - installed
+      - downloaded
+      - downloading
+      - onHold
+      properties:
+        total:
           type: integer
-        version:
+        undefined:
+          type: integer
+        updateGranted:
+          type: integer
+          x-oapi-codegen-extra-tags:
+            json: update_granted
+        error:
+          type: integer
+        complete:
+          type: integer
+        installed:
+          type: integer
+        downloaded:
+          type: integer
+        downloading:
+          type: integer
+        onHold:
+          type: integer
+    groupStatusCountTimeline:
+      type: object
+      x-go-type: map[time.Time]map[int]map[string]uint64
+    instance:
+      type: object
+      required:
+      - id
+      - ip
+      - createdTs
+      properties:
+        id:
           type: string
-        url:
-          type: string
-        filename:
-          type: string
-        description:
-          type: string
-        size:
-          type: string
-        hash:
+        ip:
           type: string
         createdTs:
           type: string
           format: date-time
           x-oapi-codegen-extra-tags:
             json: created_ts
-        channelsBlacklist:
+        application:
+          $ref: '#/components/schemas/instanceApplication'
+        alias:
+          type: string
+    arch:
+      type: integer
+    groupVersionBreakdown:
+      type: array
+      items:
+        $ref: '#/components/schemas/versionBreakdownEntry'
+    channelPage:
+      type: object
+      required:
+      - totalCount
+      - count
+      - channels
+      properties:
+        totalCount:
+          type: integer
+        count:
+          type: integer
+        channels:
           type: array
           items:
-            type: string
-          x-oapi-codegen-extra-tags:
-            json: channels_blacklist
-        extraFiles:
-          $ref: '#/components/schemas/extraFiles'
-        applicationID:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: application_id
-        flatcarAction:
-          $ref: '#/components/schemas/flatcarAction'
-        arch:
-          $ref: '#/components/schemas/arch'
-        isFloor:
-          type: boolean
-          description: Indicates if this package is a floor version for the current context
-          x-oapi-codegen-extra-tags:
-            json: is_floor,omitempty
-        floorReason:
-          type:
-          - string
-          - 'null'
-          description: Reason why this package is marked as a floor version
-          maxLength: 500
-          x-oapi-codegen-extra-tags:
-            json: floor_reason
+            $ref: '#/components/schemas/channel'
     channelConfig:
       type: object
       required:
@@ -1552,114 +1370,58 @@ components:
             json: update_in_progress
       x-oapi-codegen-extra-tags:
         json: application
-    instancePage:
+    packagePage:
       type: object
       required:
-      - total
-      - instances
+      - totalCount
+      - count
+      - packages
       properties:
-        total:
+        totalCount:
           type: integer
-        instances:
+        count:
+          type: integer
+        packages:
           type: array
           items:
-            $ref: '#/components/schemas/instance'
-    groupInstanceStats:
+            $ref: '#/components/schemas/package'
+    channel:
       type: object
       required:
-      - total
-      - undefined
-      - updateGranted
-      - error
-      - complete
-      - installed
-      - downloaded
-      - downloading
-      - onHold
-      properties:
-        total:
-          type: integer
-        undefined:
-          type: integer
-        updateGranted:
-          type: integer
-          x-oapi-codegen-extra-tags:
-            json: update_granted
-        error:
-          type: integer
-        complete:
-          type: integer
-        installed:
-          type: integer
-        downloaded:
-          type: integer
-        downloading:
-          type: integer
-        onHold:
-          type: integer
-    extraFiles:
-      type: array
-      items:
-        type: object
-        properties:
-          id:
-            type: integer
-          name:
-            type: string
-          hash:
-            type: string
-          hash256:
-            type: string
-          size:
-            type: string
-      x-oapi-codegen-extra-tags:
-        json: extra_files
-    groupStatusCountTimeline:
-      type: object
-      x-go-type: map[time.Time]map[int]map[string]uint64
-    groupConfig:
-      type: object
-      required:
+      - id
       - name
-      - policy_max_updates_per_period
-      - policy_period_interval
-      - policy_timezone
-      - policy_update_timeout
-      properties:
-        name:
-          type: string
-          maxLength: 50
-        description:
-          type: string
-          maxLength: 250
-        channel_id:
-          type: string
-        policy_updates_enabled:
-          type: boolean
-        policy_safe_mode:
-          type: boolean
-        policy_office_hours:
-          type: boolean
-        policy_timezone:
-          type: string
-        policy_period_interval:
-          type: string
-        policy_max_updates_per_period:
-          type: integer
-        policy_update_timeout:
-          type: string
-        track:
-          type: string
-          maxLength: 256
-    flatcarActionPackage:
-      type: object
+      - color
+      - createdTs
+      - applicationID
+      - packageID
+      - arch
       properties:
         id:
           type: string
-        sha256:
+        name:
           type: string
+          maxLength: 50
+        color:
+          type: string
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+        applicationID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: application_id
+        packageID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: package_id
+        package:
+          $ref: '#/components/schemas/package'
+        arch:
+          $ref: '#/components/schemas/arch'
       x-oapi-codegen-extra-tags:
-        json: flatcar_action
+        db: channel
     appsPage:
       type: object
       required:
@@ -1675,14 +1437,72 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/application'
-    instanceCount:
+    package:
       type: object
       required:
-      - count
+      - id
+      - type
+      - version
+      - url
+      - filename
+      - description
+      - size
+      - hash
+      - createdTs
+      - channelsBlacklist
+      - applicationID
+      - arch
       properties:
-        count:
+        id:
+          type: string
+        type:
           type: integer
-          x-go-type: uint64
+        version:
+          type: string
+        url:
+          type: string
+        filename:
+          type: string
+        description:
+          type: string
+        size:
+          type: string
+        hash:
+          type: string
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+        channelsBlacklist:
+          type: array
+          items:
+            type: string
+          x-oapi-codegen-extra-tags:
+            json: channels_blacklist
+        extraFiles:
+          $ref: '#/components/schemas/extraFiles'
+        applicationID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: application_id
+        flatcarAction:
+          $ref: '#/components/schemas/flatcarAction'
+        arch:
+          $ref: '#/components/schemas/arch'
+        isFloor:
+          type: boolean
+          description: Indicates if this package is a floor version for the current context
+          x-oapi-codegen-extra-tags:
+            json: is_floor,omitempty
+        floorReason:
+          type:
+          - string
+          - 'null'
+          description: Reason why this package is marked as a floor version
+          maxLength: 500
+          x-oapi-codegen-extra-tags:
+            json: floor_reason
     flatcarAction:
       type: object
       required:
@@ -1737,26 +1557,206 @@ components:
             json: created_ts
       x-oapi-codegen-extra-tags:
         json: flatcar_action
-    instance:
+    application:
       type: object
       required:
       - id
-      - ip
+      - name
+      - description
       - createdTs
+      - groups
+      - channels
+      - instances
+      - productId
       properties:
         id:
           type: string
-        ip:
+        name:
+          type: string
+        description:
           type: string
         createdTs:
           type: string
           format: date-time
           x-oapi-codegen-extra-tags:
             json: created_ts
-        application:
-          $ref: '#/components/schemas/instanceApplication'
-        alias:
+        productId:
           type: string
+          x-oapi-codegen-extra-tags:
+            json: product_id
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/group'
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/channel'
+        instances:
+          type: object
+          required:
+          - count
+          properties:
+            count:
+              type: integer
+    group:
+      type: object
+      required:
+      - id
+      - name
+      - description
+      - createdTs
+      - rolloutInProgress
+      - applicationID
+      - channelID
+      - policyUpdatesEnabled
+      - policySafeMode
+      - policyOfficeHours
+      - policyTimezone
+      - policyPeriodInterval
+      - policyMaxUpdatesPerPeriod
+      - policyUpdateTimeout
+      - track
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+        rolloutInProgress:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: rollout_in_progress
+        applicationID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: application_id
+        channelID:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: channel_id
+        policyUpdatesEnabled:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: policy_updates_enabled
+        policySafeMode:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: policy_safe_mode
+        policyOfficeHours:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: policy_office_hours
+        policyTimezone:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: policy_timezone
+        policyPeriodInterval:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: policy_period_interval
+        policyMaxUpdatesPerPeriod:
+          type: integer
+          minimum: 0
+          x-oapi-codegen-extra-tags:
+            json: policy_max_updates_per_period
+        policyUpdateTimeout:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: policy_update_timeout
+        channel:
+          $ref: '#/components/schemas/channel'
+        track:
+          type: string
+    instanceCount:
+      type: object
+      required:
+      - count
+      properties:
+        count:
+          type: integer
+          x-go-type: uint64
+    instanceStatusHistories:
+      type: array
+      items:
+        $ref: '#/components/schemas/instanceStatusHistory'
+    groupConfig:
+      type: object
+      required:
+      - name
+      - policy_max_updates_per_period
+      - policy_period_interval
+      - policy_timezone
+      - policy_update_timeout
+      properties:
+        name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 250
+        channel_id:
+          type: string
+        policy_updates_enabled:
+          type: boolean
+        policy_safe_mode:
+          type: boolean
+        policy_office_hours:
+          type: boolean
+        policy_timezone:
+          type: string
+        policy_period_interval:
+          type: string
+        policy_max_updates_per_period:
+          type: integer
+        policy_update_timeout:
+          type: string
+        track:
+          type: string
+          maxLength: 256
+    groupVersionCountTimeline:
+      type: object
+      x-go-type: map[time.Time]map[string]uint64
+    instanceStatusHistory:
+      type: object
+      required:
+      - status
+      - verison
+      - createdTs
+      - errorCode
+      properties:
+        status:
+          type: integer
+        verison:
+          type: string
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+        errorCode:
+          type: string
+          x-oapi-codegen-extra-tags:
+            db: error_code
+            json: error_code
+    instancePage:
+      type: object
+      required:
+      - total
+      - instances
+      properties:
+        total:
+          type: integer
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/instance'
   securitySchemes:
     oidcBearerAuth:
       type: http

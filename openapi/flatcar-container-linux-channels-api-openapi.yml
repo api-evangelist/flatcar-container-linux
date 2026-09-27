@@ -143,6 +143,8 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    arch:
+      type: integer
     package:
       type: object
       required:
@@ -209,25 +211,6 @@ components:
           maxLength: 500
           x-oapi-codegen-extra-tags:
             json: floor_reason
-    extraFiles:
-      type: array
-      items:
-        type: object
-        properties:
-          id:
-            type: integer
-          name:
-            type: string
-          hash:
-            type: string
-          hash256:
-            type: string
-          size:
-            type: string
-      x-oapi-codegen-extra-tags:
-        json: extra_files
-    arch:
-      type: integer
     flatcarAction:
       type: object
       required:
@@ -282,6 +265,23 @@ components:
             json: created_ts
       x-oapi-codegen-extra-tags:
         json: flatcar_action
+    extraFiles:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          hash:
+            type: string
+          hash256:
+            type: string
+          size:
+            type: string
+      x-oapi-codegen-extra-tags:
+        json: extra_files
   securitySchemes:
     oidcBearerAuth:
       type: http
