@@ -143,8 +143,79 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    flatcarAction:
+      type: object
+      required:
+      - id
+      - event
+      - chromeOSVersion
+      - sha256
+      - needsAdmin
+      - isDelta
+      - disablePayloadBackoff
+      - metadataSignatureRsa
+      - metadataSize
+      - deadline
+      - createdTs
+      properties:
+        id:
+          type: string
+        event:
+          type: string
+        chromeOSVersion:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: chromeos_version
+        sha256:
+          type: string
+        needsAdmin:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: needs_admin
+        isDelta:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: is_delta
+        disablePayloadBackoff:
+          type: boolean
+          x-oapi-codegen-extra-tags:
+            json: disable_payload_backoff
+        metadataSignatureRsa:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: metadata_signature_rsa
+        metadataSize:
+          type: string
+          x-oapi-codegen-extra-tags:
+            json: metadata_size
+        deadline:
+          type: string
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+      x-oapi-codegen-extra-tags:
+        json: flatcar_action
     arch:
       type: integer
+    extraFiles:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          hash:
+            type: string
+          hash256:
+            type: string
+          size:
+            type: string
+      x-oapi-codegen-extra-tags:
+        json: extra_files
     package:
       type: object
       required:
@@ -211,77 +282,6 @@ components:
           maxLength: 500
           x-oapi-codegen-extra-tags:
             json: floor_reason
-    flatcarAction:
-      type: object
-      required:
-      - id
-      - event
-      - chromeOSVersion
-      - sha256
-      - needsAdmin
-      - isDelta
-      - disablePayloadBackoff
-      - metadataSignatureRsa
-      - metadataSize
-      - deadline
-      - createdTs
-      properties:
-        id:
-          type: string
-        event:
-          type: string
-        chromeOSVersion:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: chromeos_version
-        sha256:
-          type: string
-        needsAdmin:
-          type: boolean
-          x-oapi-codegen-extra-tags:
-            json: needs_admin
-        isDelta:
-          type: boolean
-          x-oapi-codegen-extra-tags:
-            json: is_delta
-        disablePayloadBackoff:
-          type: boolean
-          x-oapi-codegen-extra-tags:
-            json: disable_payload_backoff
-        metadataSignatureRsa:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: metadata_signature_rsa
-        metadataSize:
-          type: string
-          x-oapi-codegen-extra-tags:
-            json: metadata_size
-        deadline:
-          type: string
-        createdTs:
-          type: string
-          format: date-time
-          x-oapi-codegen-extra-tags:
-            json: created_ts
-      x-oapi-codegen-extra-tags:
-        json: flatcar_action
-    extraFiles:
-      type: array
-      items:
-        type: object
-        properties:
-          id:
-            type: integer
-          name:
-            type: string
-          hash:
-            type: string
-          hash256:
-            type: string
-          size:
-            type: string
-      x-oapi-codegen-extra-tags:
-        json: extra_files
   securitySchemes:
     oidcBearerAuth:
       type: http
