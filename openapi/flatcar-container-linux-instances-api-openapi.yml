@@ -46,24 +46,11 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    instance:
+    updateInstanceConfig:
       type: object
       required:
-      - id
-      - ip
-      - createdTs
+      - alias
       properties:
-        id:
-          type: string
-        ip:
-          type: string
-        createdTs:
-          type: string
-          format: date-time
-          x-oapi-codegen-extra-tags:
-            json: created_ts
-        application:
-          $ref: '#/components/schemas/instanceApplication'
         alias:
           type: string
     instanceApplication:
@@ -123,11 +110,24 @@ components:
             json: update_in_progress
       x-oapi-codegen-extra-tags:
         json: application
-    updateInstanceConfig:
+    instance:
       type: object
       required:
-      - alias
+      - id
+      - ip
+      - createdTs
       properties:
+        id:
+          type: string
+        ip:
+          type: string
+        createdTs:
+          type: string
+          format: date-time
+          x-oapi-codegen-extra-tags:
+            json: created_ts
+        application:
+          $ref: '#/components/schemas/instanceApplication'
         alias:
           type: string
   securitySchemes:
